@@ -1,11 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Silent Hill — PS1 en el navegador</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0a0a0a;
+      color: #d0d0d0;
+      font-family: system-ui, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 1.4rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #8b0000;
+      margin-bottom: 12px;
+      text-shadow: 0 0 10px #000;
+    }
+    #game {
+      width: min(960px, 95vw);
+      height: min(720px, 80vh);
+      background: #000;
+      border: 2px solid #333;
+      border-radius: 6px;
+      box-shadow: 0 0 30px rgba(139,0,0,0.4);
+      overflow: hidden;
+    }
+    p.info {
+      margin-top: 12px;
+      font-size: 0.85rem;
+      color: #666;
+    }
+  </style>
 </head>
 <body>
-    
+  <h1>Silent Hill</h1>
+  <div id="game"></div>
+  <p class="info">Emulado con EmulatorJS · PlayStation 1</p>
+
+  <script>
+    EJS_player        = '#game';
+    EJS_core          = 'psx';
+    EJS_gameUrl       = 'roms/SHill.iso';
+    EJS_biosUrl       = 'bios/scph5501.bin';
+    EJS_pathtodata    = 'data/';
+    EJS_gameName      = 'Silent Hill';
+    EJS_color         = '#8b0000';
+    EJS_startOnLoaded = true;
+  </script>
+  <script src="data/loader.js"></script>
 </body>
 </html>
