@@ -14,7 +14,7 @@ Deja tu BIOS en la carpeta:
 
     bios/
 
-Deja tu juego (ISO) en la carpeta:
+Deja tu juego (ISO) en la carpeta: 
 
     roms/
 
