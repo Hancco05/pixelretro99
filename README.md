@@ -67,6 +67,9 @@ Controles por defecto
 
 Se pueden cambiar desde el icono de mando dentro del emulador.
 
+<img width="1536" height="681" alt="capturaprincipal1 jpg" src="https://github.com/user-attachments/assets/dbb5014e-7d7a-479c-9c63-d723e8c7c879" />
+
+
 Notas
 
 - El navegador no puede ejecutar archivos .exe.
