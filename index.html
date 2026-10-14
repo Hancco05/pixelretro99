@@ -3,59 +3,226 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Silent Hill — PS1 en el navegador</title>
+  <title>localhost 99 · retro games</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: #0a0a0a;
-      color: #d0d0d0;
-      font-family: system-ui, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-    h1 {
-      font-size: 1.4rem;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: #8b0000;
-      margin-bottom: 12px;
-      text-shadow: 0 0 10px #000;
-    }
-    #game {
-      width: min(960px, 95vw);
-      height: min(720px, 80vh);
+
+    html, body {
+      height: 100%;
       background: #000;
-      border: 2px solid #333;
-      border-radius: 6px;
-      box-shadow: 0 0 30px rgba(139,0,0,0.4);
+      color: #c9c1b8;
+      font-family: 'Courier New', monospace;
       overflow: hidden;
     }
-    p.info {
-      margin-top: 12px;
-      font-size: 0.85rem;
-      color: #666;
+
+    /* Fondo con niebla animada */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 40%, rgba(120,80,60,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 80%, rgba(80,20,20,0.22) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 15%, rgba(60,60,70,0.18) 0%, transparent 55%),
+        #060606;
+      z-index: -2;
+      animation: fogMove 30s ease-in-out infinite alternate;
+    }
+
+    @keyframes fogMove {
+      0%   { background-position: 0 0, 0 0, 0 0, 0 0; }
+      100% { background-position: 40px 20px, -30px 10px, 20px -20px, 0 0; }
+    }
+
+    /* Viñeta oscura por encima */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,0.85) 100%);
+      z-index: 100;
+    }
+
+    .wrap {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 12px 16px;
+      z-index: 1;
+    }
+
+    /* Barra superior */
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 4px 12px;
+      flex-shrink: 0;
+    }
+
+    h1 {
+      font-size: clamp(0.9rem, 1.6vw, 1.2rem);
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #d8d0c4;
+      text-shadow:
+        0 0 8px rgba(180,20,20,0.75),
+        0 0 22px rgba(120,10,10,0.55);
+      animation: flicker 4s infinite;
+    }
+
+    h1 b { color: #b31414; font-weight: 900; }
+
+    @keyframes flicker {
+      0%,100% { opacity: 1; }
+      89% { opacity: 1; }
+      90% { opacity: 0.4; }
+      91% { opacity: 1; }
+      95% { opacity: 0.75; }
+      96% { opacity: 1; }
+    }
+
+    .badge {
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border: 1px solid rgba(179,20,20,0.6);
+      background: rgba(80,0,0,0.3);
+      color: #e05a5a;
+      border-radius: 2px;
+      text-shadow: 0 0 8px rgba(179,20,20,0.9);
+    }
+
+    .screen {
+      flex: 1;
+      position: relative;
+      background: #000;
+      border: 2px solid #2a0a0a;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px #000,
+        0 0 40px rgba(140, 10, 10, 0.45),
+        0 0 100px rgba(0,0,0,0.9) inset;
+      min-height: 0;
+    }
+
+    #game {
+      width: 100%;
+      height: 100%;
+      background: #000;
+    }
+
+    .scanlines {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.18) 0px,
+        rgba(0,0,0,0.18) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+      mix-blend-mode: multiply;
+      z-index: 10;
+    }
+
+    /* Esquinas tipo marco oxidado */
+    .screen::before,
+    .screen::after {
+      content: "";
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      border: 2px solid rgba(140, 20, 20, 0.6);
+      pointer-events: none;
+      z-index: 11;
+    }
+    .screen::before { top: 8px; left: 8px; border-right: none; border-bottom: none; }
+    .screen::after  { bottom: 8px; right: 8px; border-left: none; border-top: none; }
+
+    /* Pie */
+    .bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 6px 4px;
+      flex-shrink: 0;
+      font-size: 0.72rem;
+      letter-spacing: 4px;
+      color: #5a4a44;
+      text-transform: uppercase;
+    }
+
+    .bottom .dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #b31414;
+      border-radius: 50%;
+      margin-right: 10px;
+      box-shadow: 0 0 12px #b31414;
+      animation: pulse 2.2s infinite;
+      vertical-align: middle;
+    }
+
+    @keyframes pulse {
+      0%,100% { opacity: 1; }
+      50% { opacity: 0.25; }
+    }
+
+    /* Frase ambiental parpadeante */
+    .warning {
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.68rem;
+      letter-spacing: 5px;
+      color: rgba(180, 30, 30, 0.55);
+      text-transform: uppercase;
+      pointer-events: none;
+      z-index: 12;
+      animation: flicker 6s infinite;
     }
   </style>
 </head>
 <body>
-  <h1>Silent Hill</h1>
-  <div id="game"></div>
-  <p class="info">Emulado con EmulatorJS · PlayStation 1</p>
+
+  <div class="wrap">
+    <div class="top">
+      <h1>localhost 99 <b>·</b> retro games</h1>
+      <div class="badge">PS1 · Online</div>
+    </div>
+
+    <div class="screen">
+      <div class="warning">— En algún lugar, una niebla te espera —</div>
+      <div id="game"></div>
+      <div class="scanlines"></div>
+    </div>
+
+    <div class="bottom">
+      <span><span class="dot"></span>EmulatorJS · PlayStation 1</span>
+      <span>F11 para pantalla completa</span>
+    </div>
+  </div>
 
   <script>
     EJS_player        = '#game';
     EJS_core          = 'psx';
+    EJS_biosUrl       = 'bios/scph7502.bin';
     EJS_gameUrl       = 'roms/SHill.iso';
-    EJS_biosUrl       = 'bios/scph5501.bin';
     EJS_pathtodata    = 'data/';
     EJS_gameName      = 'Silent Hill';
-    EJS_color         = '#8b0000';
+    EJS_color         = '#b31414';
     EJS_startOnLoaded = true;
   </script>
   <script src="data/loader.js"></script>
+
 </body>
 </html>
