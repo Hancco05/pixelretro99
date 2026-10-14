@@ -42,7 +42,6 @@ Importante: el nombre tiene que coincidir EXACTAMENTE
 con el archivo que dejaste en la carpeta.
 Cuidado con las mayúsculas y minúsculas.
 
-
 ¿Cómo lo ejecuto?
 
 1. Abre una terminal en la carpeta del proyecto.
@@ -57,7 +56,6 @@ Cuidado con las mayúsculas y minúsculas.
 
 4. Pulsa F11 para pantalla completa.
 
-
 Controles por defecto
 
     Flechas ....... mover
@@ -68,7 +66,6 @@ Controles por defecto
     Q / E ......... L1 / R1
 
 Se pueden cambiar desde el icono de mando dentro del emulador.
-
 
 Notas
 
