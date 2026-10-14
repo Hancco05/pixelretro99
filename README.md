@@ -83,3 +83,5 @@ PlayStation y su BIOS son propiedad de Sony.
 Los juegos pertenecen a sus respectivas compañías.
 Usa tus propios respaldos legales.
 Este proyecto no incluye ni distribuye BIOS ni ISOs.
+
+ESTE PROYECTO ES DE LIBRE USO.
