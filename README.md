@@ -1,6 +1,6 @@
 Localhost 99 retro games
 
-Reproductor web para jugar juegos de PlayStation 1 en el navegador usando EmulatorJS.
+Reproductor web para jugar juegos de PlayStation en el navegador usando EmulatorJS.
 
 ¿Qué necesitas?
 
