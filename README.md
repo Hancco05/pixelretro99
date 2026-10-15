@@ -1,4 +1,4 @@
-localhost 99 retro games
+Localhost 99 retro games
 
 Reproductor web para jugar juegos de PlayStation 1 en el navegador usando EmulatorJS.
 
@@ -78,9 +78,6 @@ Notas
 - No subas BIOS ni ISOs a GitHub, superan el límite y tienen copyright.
 
 Aviso legal
-
-PlayStation y su BIOS son propiedad de Sony.
-Los juegos pertenecen a sus respectivas compañías.
 Usa tus propios respaldos legales.
 Este proyecto no incluye ni distribuye BIOS ni ISOs.
 
